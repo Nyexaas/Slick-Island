@@ -35,7 +35,7 @@ ColumnLayout {
 
     Text {
         visible: wpRoot.wallList.length === 0
-        text: "Aucune image dans ~/Images/Wallpapers"
+        text: "No images found in ~/Images/Wallpapers"
         color: "#f38ba8"
         font.family: "JetBrainsMono Nerd Font"
         font.pixelSize: 10
