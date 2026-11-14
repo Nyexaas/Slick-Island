@@ -24,7 +24,7 @@ PanelWindow {
         anchors.top: parent.top
         anchors.topMargin: 8
         anchors.left: parent.left
-        anchors.leftMargin: 56 // 12px (marge gauche) + 36px (bulle Arch) + 8px (espace) = 56px
+        anchors.leftMargin: 56 // 12px (left marge) + 36px (bubble Arch) + 8px (space) = 56px
 
 
         property bool expanded: false
