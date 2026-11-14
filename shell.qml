@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 
 ShellRoot {
-    // 1. Pilule centrale
+    // 1. Center bubble
     PanelWindow {
         anchors.top: true
         exclusiveZone: 27
@@ -11,7 +11,6 @@ ShellRoot {
         implicitHeight: island.height + 10
         color: "transparent"
 
-        // Laisse passer les clics dans la fine marge transparente autour de la pilule
         mask: Region { item: island }
 
         Rectangle {
@@ -22,7 +21,7 @@ ShellRoot {
 
             property bool expanded: false
 
-            // Taille dynamique : compacte (ajustée à l'heure) ou étendue (ajustée au calendrier)
+            // Dynamic size
             width: expanded ? 270 : compactRow.implicitWidth + 28
             height: expanded ? calendarView.implicitHeight + 24 : 32
             radius: expanded ? 18 : 16
@@ -34,7 +33,6 @@ ShellRoot {
             Behavior on height { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
             Behavior on radius { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
 
-            // Un seul MouseArea pour gérer clic gauche (format) et clic droit (calendrier)
             MouseArea {
                 anchors.fill: parent
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
@@ -48,7 +46,7 @@ ShellRoot {
                 }
             }
 
-            // Vue fermée : uniquement l'horloge
+            // Closed view - clock only
             RowLayout {
                 id: compactRow
                 anchors.centerIn: parent
@@ -59,7 +57,7 @@ ShellRoot {
                 }
             }
 
-            // Vue ouverte : le calendrier (au même niveau que compactRow, pas dedans)
+            // Open view
             CalendarView {
                 id: calendarView
                 anchors.top: parent.top
@@ -72,22 +70,22 @@ ShellRoot {
         }
     }
 
-    // 2. Pilule audio en haut à droite (au même niveau que PanelWindow dans ShellRoot)
+    // 2. Audio bubble
     AudioIsland {
         onToggleMixer: mixerWindow.showMixer = !mixerWindow.showMixer
     }
 
-     // 3. Pilule système & tray en haut à gauche
+     // 3. System bubble
     LeftIsland {
         id: leftIsland
     }
 
-     // 4. Mini-bulle loupe (Lanceur d'applications)
+     // 4. app launch bubble
     LauncherIsland {
         hiddenByMenu: leftIsland.isExpanded
     }
 
-     // 5. Fenêtre externe du mélangeur audio
+     // 5. external window mixer
     AudioMixerWindow {
         id: mixerWindow
     }
