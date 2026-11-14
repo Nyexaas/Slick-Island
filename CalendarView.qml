@@ -48,16 +48,17 @@ ColumnLayout {
             }
         }
 
-        Text {
+                Text {
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignHCenter
-            text: Qt.formatDate(new Date(calRoot.displayYear, calRoot.displayMonth, 1), "MMMM yyyy")
+            text: Qt.locale("fr_FR").toString(new Date(calRoot.displayYear, calRoot.displayMonth, 1), "MMMM yyyy")
             color: "#cdd6f4"
             font.family: "JetBrainsMono Nerd Font"
             font.pixelSize: 13
             font.bold: true
             font.capitalization: Font.Capitalize
         }
+
 
         Text {
             text: ">"
