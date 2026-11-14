@@ -10,7 +10,7 @@ Text {
     property bool isMuted: sink && sink.audio ? sink.audio.muted : true
     property int volPercent: sink && sink.audio ? Math.round(sink.audio.volume * 100) : 0
 
-    // Choisit l'icône selon l'état (coupé, faible, moyen, fort)
+    // Chooses icon
     property string icon: {
         if (isMuted || volPercent === 0) return "  "; // Haut-parleur barré
         if (volPercent < 30) return "  ";             // Volume faible
@@ -18,12 +18,12 @@ Text {
         return "  ";                                  // Volume élevé
     }
 
-    text: isMuted ? (icon + " Muet") : (icon + " " + volPercent + "%")
+    text: isMuted ? (icon + " Muted") : (icon + " " + volPercent + "%")
 
-    // Passe en rouge doux quand le son est coupé, sinon gris clair
+    // Goes red if sound is cut, else grey
     color: isMuted ? "#f38ba8" : "#a6adc8"
 
-    // Transition douce de couleur au clic
+    // Transition
     Behavior on color {
         ColorAnimation { duration: 150 }
     }
