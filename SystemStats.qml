@@ -10,7 +10,7 @@ ColumnLayout {
     property string ramText: "RAM: --%"
     property string gpuText: "GPU: --"
 
-    // Rafraîchit les stats toutes les 2 secondes uniquement quand le menu est ouvert
+    // Refresh stats every 2 seconds only when menu is open
     Timer {
         interval: 2000
         running: statsRoot.visible
@@ -23,7 +23,7 @@ ColumnLayout {
         id: statsProc
         command: [
             "sh", "-c",
-            // Récupère CPU%, Température CPU, RAM%, et GPU (NVIDIA ou AMD/Intel)
+            // Retrieve CPU%, Temp CPU, RAM%, and GPU
             "cpu=$(top -bn1 | grep 'Cpu(s)' | awk '{print int($2+$4)}'); " +
             "ctemp=$(cat /sys/class/thermal/thermal_zone0/temp 2>/dev/null | awk '{print int($1/1000)}'); " +
             "ram=$(free | awk '/Mem:/ {printf \"%d\", $3/$2 * 100}'); " +
