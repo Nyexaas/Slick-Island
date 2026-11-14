@@ -5,7 +5,7 @@ import Quickshell.Services.Pipewire
 
 PanelWindow {
     id: mixerWin
-    // S'affiche uniquement quand showMixer est vrai
+    // only shows when showMixer is true
     visible: showMixer
     property bool showMixer: false
 
@@ -28,7 +28,6 @@ PanelWindow {
         anchors.rightMargin: 12
 
         width: 300
-        // Hauteur dynamique limitée à 360px max avec défilement si beaucoup d'apps
         height: Math.min(360, mixerCol.implicitHeight + 24)
         radius: 18
         color: "#11111b"
@@ -43,11 +42,11 @@ PanelWindow {
             anchors.margins: 12
             spacing: 10
 
-            // En-tête + bouton fermer
+            // head + close button
             RowLayout {
                 Layout.fillWidth: true
                 Text {
-                    text: "   Mélangeur Audio"
+                    text: "  Auudio Mixer"
                     color: "#cba6f7"
                     font.family: "JetBrainsMono Nerd Font"
                     font.pixelSize: 13
@@ -69,7 +68,7 @@ PanelWindow {
 
             Rectangle { Layout.fillWidth: true; height: 1; color: "#313244" }
 
-            // Zone défilable pour la liste des applications
+            // Flickable Zone for app list
             Flickable {
                 Layout.fillWidth: true
                 Layout.preferredHeight: Math.min(280, appsCol.implicitHeight)
