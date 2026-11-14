@@ -21,7 +21,7 @@ Text {
         switch (mode) {
             case 0: return Qt.formatDateTime(clock.date, "HH:mm");
             case 1: return Qt.formatDateTime(clock.date, "hh:mm AP");
-            case 2: return Qt.formatDateTime(clock.date, "ddd dd MMM");
+            case 2: return Qt.locale("fr_FR").toString(clock.date, "ddd dd MMM");
             case 3: return Qt.formatDateTime(clock.date, "HH:mm • dd/MM");
         }
     }
