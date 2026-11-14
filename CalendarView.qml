@@ -98,7 +98,7 @@ ColumnLayout {
         columnSpacing: 4
 
         Repeater {
-            model: [ "Lu", "Ma", "Me", "Je", "Ve", "Sa", "Di" ]
+            model: [ "Mo", "Tu", "We", "Th", "Fr", "Sa", "Su" ]
             Text {
                 Layout.fillWidth: true
                 horizontalAlignment: Text.AlignHCenter
