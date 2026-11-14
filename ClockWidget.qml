@@ -4,10 +4,10 @@ import Quickshell
 Text {
     id: clockText
 
-    // 0: Classique (14:27) | 1: Anglais (02:27 PM) | 2: Date | 3: Heure + Date
+    // 0: Classical  (14:27) | 1: english (02:27 PM) | 2: Date | 3: hour + Date
     property int mode: 0
 
-    // Fonction appelée par le clic gauche de la bulle centrale
+    // Function called via left click on the bubble.
     function nextMode() {
         mode = (mode + 1) % 4;
     }
