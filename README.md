@@ -49,7 +49,7 @@ sudo pacman -S quickshell qt6-declarative pipewire wireplumber cava hyprpaper tt
 
 1. **Clone this repository into `~/.config/quickshell`:**
    ```bash
-   git clone https://github.com ~/.config/quickshell
+   git clone https://github.com/Nyexaas/Slick-Island.git ~/.config/quickshell
    ```
 
 2. **Set up your wallpapers folder:**
