@@ -13,7 +13,7 @@ PanelWindow {
 
     exclusionMode: ExclusionMode.Ignore
     focusable: launcherPill.expanded
-    implicitWidth: launcherPill.width + 70 // Toujours supérieur à leftMargin (56) + marge
+    implicitWidth: launcherPill.width + 70
     implicitHeight: launcherPill.height + 10
     color: "transparent"
 
@@ -49,7 +49,7 @@ PanelWindow {
         Behavior on height { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
         Behavior on radius { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
 
-        // 1. VUE COMPACTE (Juste une loupe)
+        // 1. Compact view
         Text {
             anchors.centerIn: parent
             visible: !launcherPill.expanded
@@ -69,7 +69,7 @@ PanelWindow {
             }
         }
 
-        // 2. VUE OUVERTE (Recherche + liste compacte)
+        // 2. Open view
         ColumnLayout {
             id: expandedLauncherCol
             anchors.top: parent.top
@@ -79,7 +79,7 @@ PanelWindow {
             spacing: 8
             visible: launcherPill.expanded
 
-            // Barre de recherche + bouton fermer
+            // Research bar + close button
             RowLayout {
                 Layout.fillWidth: true
                 spacing: 8
@@ -106,7 +106,7 @@ PanelWindow {
                         Text {
                             anchors.fill: parent
                             verticalAlignment: TextInput.AlignVCenter
-                            text: "Lancer une app..."
+                            text: "Launch an app..."
                             color: "#6c7086"
                             font.family: "JetBrainsMono Nerd Font"
                             font.pixelSize: 12
@@ -143,7 +143,7 @@ PanelWindow {
                 }
             }
 
-            // Liste des applications (icônes verrouillées en 16x16px)
+            // List of app
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 2
