@@ -5,14 +5,12 @@ ColumnLayout {
     id: calRoot
     spacing: 8
 
-    // Signal émis quand on clique sur le bouton fermer
     signal closeRequested()
 
     property date currentDate: new Date()
     property int displayYear: currentDate.getFullYear()
     property int displayMonth: currentDate.getMonth() // 0 = Janvier, 11 = Décembre
 
-    // Calcule la liste des cases du calendrier (lundi en premier)
     property var daysModel: {
         let firstDay = new Date(displayYear, displayMonth, 1).getDay();
         let offset = (firstDay === 0) ? 6 : firstDay - 1; // Décale pour commencer le Lundi
@@ -24,7 +22,6 @@ ColumnLayout {
         return cells;
     }
 
-    // En-tête : Mois Année + Navigation + Bouton fermer
     RowLayout {
         Layout.fillWidth: true
 
@@ -114,7 +111,7 @@ ColumnLayout {
         }
     }
 
-    // Grille des numéros du mois
+    // Grid month number
     GridLayout {
         columns: 7
         Layout.fillWidth: true
