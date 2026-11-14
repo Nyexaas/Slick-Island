@@ -8,7 +8,7 @@ ColumnLayout {
 
     signal appLaunched()
 
-    // Filtre la liste des applications selon ce que vous tapez
+    // app filter
     property var filteredApps: {
         let q = searchInput.text.toLowerCase().trim();
         let all = DesktopEntries.applications.values;
@@ -19,7 +19,7 @@ ColumnLayout {
         ).slice(0, 8);
     }
 
-    // Barre de recherche
+    // research bar
     Rectangle {
         Layout.fillWidth: true
         height: 28
@@ -61,7 +61,7 @@ ColumnLayout {
         }
     }
 
-    // Liste des applications correspondantes
+    // app list
     ColumnLayout {
         Layout.fillWidth: true
         spacing: 2
