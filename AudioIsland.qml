@@ -17,7 +17,7 @@ PanelWindow {
 
     mask: Region { item: audioPill }
 
-    // Signal pour ouvrir/fermer la fenêtre externe du mélangeur
+    // Signal to open/close mixer window
     signal toggleMixer()
 
     PwObjectTracker {
@@ -72,7 +72,7 @@ PanelWindow {
             }
         }
 
-        // 1. VUE COMPACTE
+        // 1. Compact view
         RowLayout {
             id: audioRow
             anchors.centerIn: parent
@@ -83,7 +83,7 @@ PanelWindow {
             AudioWidget {}
         }
 
-        // 2. VUE CONTRÔLE AUDIO (Compacte : Volume + Sorties + Bouton Mélangeur)
+        // 2. Audio control view (Compact : Volume + output + mixer button)
         ColumnLayout {
             id: expandedContent
             anchors.top: parent.top
@@ -139,7 +139,7 @@ PanelWindow {
 
             Rectangle { Layout.fillWidth: true; height: 1; color: "#313244" }
 
-            // Sorties matérielles
+            // Output
             Repeater {
                 model: Pipewire.nodes
                 delegate: Rectangle {
@@ -176,7 +176,7 @@ PanelWindow {
                 }
             }
 
-            // Bouton pour ouvrir le Mélangeur externe
+            // open extertal mixer
             Rectangle {
                 Layout.fillWidth: true
                 height: 28
@@ -184,7 +184,7 @@ PanelWindow {
                 color: "#1e1e2e"
                 Text {
                     anchors.centerIn: parent
-                    text: "   Mélangeur par app"
+                    text: "  app mixer"
                     color: "#89b4fa"
                     font.family: "JetBrainsMono Nerd Font"
                     font.pixelSize: 11
