@@ -7,7 +7,7 @@ Row {
     height: 16
     anchors.verticalCenter: parent.verticalCenter
 
-    // Masque complètement le widget (et libère l'espace dans la pilule) quand il n'y a pas de son
+    // Hide the widget when there is no sound
     visible: hasAudio
 
     property bool hasAudio: false
@@ -35,7 +35,7 @@ Row {
                     let values = parts.map(Number);
                     root.bars = values;
 
-                    // Vérifie si au moins une barre bouge (seuil > 1 pour ignorer le bruit de fond)
+                    // Verify in at least a bar move ( > 1 to ignore background)
                     let active = values.some(v => v > 1);
                     if (active) {
                         hideTimer.stop();
