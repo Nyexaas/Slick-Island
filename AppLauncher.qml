@@ -39,18 +39,17 @@ ColumnLayout {
             font.pixelSize: 12
             clip: true
 
-            // Placeholder "Rechercher..."
             Text {
                 anchors.fill: parent
                 verticalAlignment: Text.AlignVCenter
-                text: " Rechercher une app..."
+                text: " Researching app..."
                 color: "#6c7086"
                 font.family: "JetBrainsMono Nerd Font"
                 font.pixelSize: 11
                 visible: searchInput.text === ""
             }
 
-            // Lancer la première app trouvée en appuyant sur Entrée
+            // Open the first ass found with enter is pressed
             Keys.onReturnPressed: {
                 if (launcherRoot.filteredApps.length > 0) {
                     launcherRoot.filteredApps.execute();
