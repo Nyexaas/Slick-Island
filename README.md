@@ -8,6 +8,12 @@ Designed to stay out of the way while providing instant access to system stats, 
 
 ---
 
+> **Branches available:**
+> * `main` — Current active ricing.
+> * `Legacy-EN` — Frozen v1 release with English UI labels.
+> * `Legacy-FR` — Frozen v1 release with French UI labels.
+
+
 ## ✨ Features
 
 * **Left System Island (`LeftIsland.qml`):**
