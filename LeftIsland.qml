@@ -63,7 +63,7 @@ PanelWindow {
         Behavior on height { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
         Behavior on radius { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
 
-        // 1. VUE COMPACTE (Uniquement l'icône Arch + Wi-Fi/Batterie si présents)
+        // 1. Compact view
         RowLayout {
             id: compactLeftRow
             anchors.centerIn: parent
@@ -102,7 +102,7 @@ PanelWindow {
             }
         }
 
-        // 2. VUE ÉTENDUE (Stats + Wallpapers + Alimentation)
+        // 2. Open view
         ColumnLayout {
             id: expandedLeftCol
             anchors.top: parent.top
@@ -115,7 +115,7 @@ PanelWindow {
             RowLayout {
                 Layout.fillWidth: true
                 Text {
-                    text: " Système"
+                    text: " System"
                     color: "#89b4fa"
                     font.family: "JetBrainsMono Nerd Font"
                     font.pixelSize: 13
@@ -149,7 +149,7 @@ PanelWindow {
                 color: leftPill.showWallpapers ? "#313244" : "#1e1e2e"
                 Text {
                     anchors.centerIn: parent
-                    text: " Choisir un Wallpaper"
+                    text: " Choose a Wallpaper"
                     color: "#cdd6f4"
                     font.family: "JetBrainsMono Nerd Font"
                     font.pixelSize: 12
