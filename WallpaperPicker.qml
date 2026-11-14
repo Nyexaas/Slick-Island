@@ -88,7 +88,6 @@ ColumnLayout {
                         hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
                         onClicked: {
-                            // Passe modelData proprement en argument $1 (zéro bug de guillemets)
                             applyProc.running = false;
                             applyProc.command = [
                                 "sh", "-c",
