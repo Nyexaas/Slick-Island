@@ -23,7 +23,7 @@ PanelWindow {
     Rectangle {
         id: mixerBox
         anchors.top: parent.top
-        anchors.topMargin: 48 // Se place juste en dessous des bulles du haut
+        anchors.topMargin: 48
         anchors.right: parent.right
         anchors.rightMargin: 12
 
