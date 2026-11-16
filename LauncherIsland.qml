@@ -3,17 +3,18 @@ import QtQuick.Layouts
 import Quickshell
 
 PanelWindow {
+    id: launcherWin
     property bool hiddenByMenu: false
+    property int offsetLeft: 56
     visible: !hiddenByMenu
 
     anchors {
         top: true
         left: true
     }
-
     exclusionMode: ExclusionMode.Ignore
     focusable: launcherPill.expanded
-    implicitWidth: launcherPill.width + 70 // Toujours supérieur à leftMargin (56) + marge
+    implicitWidth: launcherPill.width + launcherWin.offsetLeft + 15
     implicitHeight: launcherPill.height + 10
     color: "transparent"
 
@@ -24,7 +25,7 @@ PanelWindow {
         anchors.top: parent.top
         anchors.topMargin: 8
         anchors.left: parent.left
-        anchors.leftMargin: 56 // 12px (marge gauche) + 36px (bulle Arch) + 8px (espace) = 56px
+        anchors.leftMargin: launcherWin.offsetLeft
 
 
         property bool expanded: false
