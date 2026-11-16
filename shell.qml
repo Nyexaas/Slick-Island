@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 
 ShellRoot {
-    // 1. Center bubble
+    // 1. center bubble
     PanelWindow {
         anchors.top: true
         exclusiveZone: 27
@@ -33,6 +33,7 @@ ShellRoot {
             Behavior on height { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
             Behavior on radius { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
 
+            // Left click (format) Right click (calendar)
             MouseArea {
                 anchors.fill: parent
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
@@ -46,7 +47,7 @@ ShellRoot {
                 }
             }
 
-            // Closed view - clock only
+            // closed view : only the clock
             RowLayout {
                 id: compactRow
                 anchors.centerIn: parent
@@ -57,7 +58,7 @@ ShellRoot {
                 }
             }
 
-            // Open view
+            // open view : the calendar
             CalendarView {
                 id: calendarView
                 anchors.top: parent.top
@@ -70,22 +71,15 @@ ShellRoot {
         }
     }
 
-    // 2. Audio bubble
+    // 2. Audio bubble, top right
     AudioIsland {
         onToggleMixer: mixerWindow.showMixer = !mixerWindow.showMixer
     }
 
-     // 3. System bubble
-    LeftIsland {
-        id: leftIsland
-    }
+     // 3. system bubble & tray top left
+    LeftIsland { }
 
-     // 4. app launch bubble
-    LauncherIsland {
-        hiddenByMenu: leftIsland.isExpanded
-    }
-
-     // 5. external window mixer
+     // 4. external window mixer
     AudioMixerWindow {
         id: mixerWindow
     }
