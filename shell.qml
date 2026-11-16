@@ -78,16 +78,9 @@ ShellRoot {
     }
 
      // 3. Pilule système & tray en haut à gauche
-    LeftIsland {
-        id: leftIsland
-    }
+    LeftIsland {}
 
-     // 4. Mini-bulle loupe (Lanceur d'applications)
-    LauncherIsland {
-        hiddenByMenu: leftIsland.isExpanded
-    }
-
-     // 5. Fenêtre externe du mélangeur audio
+     // 4. Fenêtre externe du mélangeur audio
     AudioMixerWindow {
         id: mixerWindow
     }
