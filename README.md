@@ -13,17 +13,15 @@ Designed to stay out of the way while providing instant access to system stats, 
 > * `Legacy-EN` — Frozen v1 release with English UI labels.
 > * `Legacy-FR` — Frozen v1 release with French UI labels.
 
-
+---
 ## ✨ Features
 
-* **Left System Island (`LeftIsland.qml`):**
+* **Left Islands (`LeftIsland.qml`):**
   * Compact Arch Linux pill (automatically displays Wi-Fi and battery icons on laptops).
   * **System Monitor (`SystemStats.qml`):** Real-time CPU, RAM, and GPU usage + temperatures.
   * **Wallpaper Picker (`WallpaperPicker.qml`):** Visual thumbnail grid scanning `~/Images/Wallpapers`, applying wallpapers live via `hyprctl hyprpaper` and saving them automatically to `~/.config/hypr/hyprpaper.conf`.
   * **Power Menu:** Quick Suspend, Reboot, and Poweroff actions.
-* **App Launcher Pill (`LauncherIsland.qml`):**
-  * Compact search pill next to the system menu (auto-hides when the system menu expands).
-  * Native application search using `DesktopEntries` with keyboard navigation (`Enter` to launch, `Esc` to close).
+  * **App Launcher Pill:** Compact search pill positioned automatically next to the system pill (desktop & laptop friendly, auto-hides when the system menu expands) using native `DesktopEntries` (`Enter` to launch, `Esc` to close).
 * **Center Clock & Calendar Island (`shell.qml`, `ClockWidget.qml`, `CalendarView.qml`):**
   * **Left-click:** Cycles through 4 time/date formats (`24h`, `12h AM/PM`, `Date`, `Time • Date`).
   * **Right-click:** Expands into an interactive monthly calendar.
