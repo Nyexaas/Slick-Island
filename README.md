@@ -49,10 +49,9 @@ sudo pacman -S quickshell qt6-declarative pipewire wireplumber cava hyprpaper tt
 3. **Autostart with Hyprland:**
    Add the following lines to your `~/.config/hypr/hyprland.lua`:
    ```lua
-   hypr.exec_once({
-       "hyprpaper",
-       "qs",
-   })
+   hl.on("hyprland.start", function()
+    hl.exec_cmd("qs")
+   end)
    ```
    *(If you are still using a legacy `.conf` setup, add `exec-once = hyprpaper` and `exec-once = qs` to `hyprland.conf` instead).*
 
