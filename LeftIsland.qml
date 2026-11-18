@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
+import Quickshell.Wayland
 import Quickshell.Services.UPower
 
 PanelWindow {
@@ -213,7 +214,7 @@ PanelWindow {
         }
 
         // ==========================================
-        // BULLE 2 : APP LAUNCHER (Loupe)
+        // BULLE 2 : LANCEUR D'APPLICATIONS (Loupe)
         // ==========================================
         Rectangle {
             id: launcherPill
@@ -222,9 +223,9 @@ PanelWindow {
 
             property var filteredApps: {
                 let q = searchInput.text.toLowerCase().trim();
-                let all = DesktopEntries.applications.values;
-                if (q === "") return all.slice(0, 6);
-                return all.filter(app => app.name.toLowerCase().includes(q)).slice(0, 7);
+                let all = DesktopEntries.applications.values || [];
+                if (q === "") return all;
+                return all.filter(app => app.name && app.name.toLowerCase().includes(q));
             }
 
             Layout.preferredWidth: expanded ? 260 : 36
@@ -234,6 +235,7 @@ PanelWindow {
             color: "#11111b"
             border.color: "#313244"
             border.width: 1
+            clip: true
 
             Behavior on Layout.preferredWidth { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
             Behavior on Layout.preferredHeight { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
@@ -254,7 +256,134 @@ PanelWindow {
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
                         launcherPill.expanded = true;
+                        searchInput.text = "";
+                        appListView.positionViewAtBeginning();
                         searchInput.forceActiveFocus();
+                    }
+                }
+            }
+
+            // Vue étendue (Recherche + Liste défilable avec icônes)
+            ColumnLayout {
+                id: expandedLauncherCol
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.margins: 12
+                spacing: 8
+                visible: launcherPill.expanded
+
+                // Barre de recherche
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 8
+
+                    Text {
+                        text: ""
+                        color: "#cba6f7"
+                        font.family: "JetBrainsMono Nerd Font"
+                        font.pixelSize: 13
+                    }
+
+                    TextInput {
+                        id: searchInput
+                        Layout.fillWidth: true
+                        color: "#cdd6f4"
+                        font.family: "JetBrainsMono Nerd Font"
+                        font.pixelSize: 12
+                        clip: true
+
+                        Text {
+                            anchors.fill: parent
+                            text: "Rechercher..."
+                            color: "#6c7086"
+                            font: parent.font
+                            visible: !parent.text && !parent.activeFocus
+                        }
+
+                        Keys.onEscapePressed: {
+                            launcherPill.expanded = false;
+                            searchInput.text = "";
+                        }
+
+                        Keys.onReturnPressed: {
+                            if (launcherPill.filteredApps.length > 0) {
+                                launcherPill.filteredApps[0].execute();
+                                launcherPill.expanded = false;
+                                searchInput.text = "";
+                            }
+                        }
+                    }
+
+                    Text {
+                        text: "✕"
+                        color: "#6c7086"
+                        font.family: "JetBrainsMono Nerd Font"
+                        font.pixelSize: 13
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: {
+                                launcherPill.expanded = false;
+                                searchInput.text = "";
+                            }
+                        }
+                    }
+                }
+
+                Rectangle { Layout.fillWidth: true; height: 1; color: "#313244" }
+
+                // Liste défilable des applications (Hauteur max 240px)
+                ListView {
+                    id: appListView
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: Math.min(contentHeight, 240)
+                    clip: true
+                    spacing: 2
+                    boundsBehavior: Flickable.StopAtBounds
+                    model: launcherPill.filteredApps
+
+                    delegate: Rectangle {
+                        width: appListView.width
+                        height: 30
+                        radius: 8
+                        color: appMouse.containsMouse ? "#313244" : "transparent"
+
+                        RowLayout {
+                            anchors.fill: parent
+                            anchors.leftMargin: 6
+                            anchors.rightMargin: 6
+                            spacing: 8
+
+                            Image {
+                                Layout.preferredWidth: 18
+                                Layout.preferredHeight: 18
+                                source: Quickshell.iconPath(modelData.icon, true)
+                                sourceSize: Qt.size(18, 18)
+                                visible: modelData.icon !== ""
+                            }
+
+                            Text {
+                                Layout.fillWidth: true
+                                text: modelData.name
+                                color: "#cdd6f4"
+                                font.family: "JetBrainsMono Nerd Font"
+                                font.pixelSize: 12
+                                elide: Text.ElideRight
+                            }
+                        }
+
+                        MouseArea {
+                            id: appMouse
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: {
+                                modelData.execute();
+                                launcherPill.expanded = false;
+                                searchInput.text = "";
+                            }
+                        }
                     }
                 }
             }
